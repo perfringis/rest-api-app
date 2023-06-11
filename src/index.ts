@@ -4,7 +4,9 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
+
+import router from "./router/index";
 
 const app = express();
 
@@ -35,3 +37,6 @@ mongoose.connection.on("error", (error: Error) => {
 mongoose.connection.on("connected", () => {
   console.log("MongoDB is connected");
 });
+
+
+app.use('/', router());
